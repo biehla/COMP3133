@@ -1,0 +1,83 @@
+
+https://codeshare.io/X8Q7kE
+
+console.log('** Week02 - FS and Streams Examples');
+const fs = require('fs');
+
+// Read a file
+fs.readFile('data.txt', 'utf8', (err, data) => {
+    if (err) throw err;
+    
+    console.log(data);
+})
+console.log('** After readFile');
+
+// Read a file synchronously
+const data = fs.readFileSync('data.txt', 'utf8');
+console.log(`Sync: ${data}`);
+console.log('** End readFile');
+
+// Write a file
+const data_to_write = 'Hello World again!';
+fs.writeFile('out_data.txt', data_to_write, (err) => {
+    if (err) throw err;
+    console.log('File written');
+})
+console.log('** After writeFile');
+
+// Write a file synchronously
+const data_to_write_sync = 'Hello*World';
+fs.writeFileSync('out_data.txt', data_to_write_sync);
+console.log('** End writeFile');
+
+/////////////
+const fs = require('fs');
+
+// r - Open file for reading. An exception occurs if the file does not exist.
+// w - Open file for writing. The file is created (if it does not exist) or truncated (if it exists).
+// a - Open file for appending. The file is created if it does not exist.
+// r+ - Open file for reading and writing. An exception occurs if the file does not exist.
+// w+ - Open file for reading and writing. The file is created (if it does not exist) or truncated (if it exists).
+// a+ - Open file for reading and appending. The file is created if it does not exist.
+// rw - Open file for reading and writing. The file is created (if it does not exist) or truncated (if it exists).
+fs.open('out_data.txt', 'a+', (err, fd) => {    
+    if (err) {
+        console.log(err);
+        throw err;
+    }
+
+    // Read the file
+    // fs.read(fd, (err, data, bytesRead) => {
+    //     if (err) {
+    //         console.log(err);
+    //         throw err;
+    //     }
+
+    //     console.log(`Read ${bytesRead} bytes from file`);
+    //     console.log(data.toString());
+    // })
+
+    const data_to_write = Buffer.from('Hello World again!');
+    fs.write(fd, data_to_write, (err, written, str) => {
+        if (err) {
+            console.log(err);
+            throw err;
+        }
+
+        console.log(`Wrote ${written} bytes to file`);
+        console.log(str);
+    })
+
+    const buffer = Buffer.alloc(5);
+    fs.read(fd, buffer, 0, buffer.length, 6, (err, bytesRead) => {
+        if (err) {
+            console.log(err);
+            throw err;
+        }
+
+        console.log(`Read ${bytesRead} bytes from file`);
+        console.log(buffer.toString());
+    })
+
+
+});
