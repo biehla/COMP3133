@@ -33,8 +33,8 @@ describe("Calculator", function() {
     it("Should return 5 when dividing 15 / 3", function() {
       assert.equal(calculator.div(15, 3), 5)
     })
-    it("Should return infinity when dividing 6/0", function() {
-      assert.equal(calculator.div(6, 0), Infinity)
+    it("Should fail when dividing 6/0", function() {
+      assert.throws(calculator.div(6, 0))
     })
   })
 })
