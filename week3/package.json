@@ -1,0 +1,17 @@
+{
+  "name": "week3",
+  "version": "1.0.0",
+  "author": "",
+  "main": "index.js",
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "scripts": {
+    "test": "mocha --reporter spec --",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "chai": "^5.0.0",
+    "mocha": "^10.2.0"
+  }
+}
