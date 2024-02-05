@@ -51,7 +51,6 @@ app.get('/restaurants/Delicatessen', async (req, res) => {
 
 app.get('/restaurants/cuisine/:cuisine', async (req, res) => {
 	const cuisineType = req.params.cuisine
-	console.log(cuisineType)
 	const results = await restaurantModel.find({cuisine: cuisineType})
 
 	try {

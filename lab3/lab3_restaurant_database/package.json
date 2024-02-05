@@ -1,9 +1,8 @@
 {
   "name": "lab3_restaurant_database",
   "module": "app/index.js",
-  "type": "module",
   "scripts": {
-    "start": "bun run app/index.js",
+    "start": "node ./app/index.js",
     "watch": "bun --watch run app/index.js"
   },
   "devDependencies": {
