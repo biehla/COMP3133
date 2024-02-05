@@ -1,0 +1,20 @@
+{
+  "name": "lab3_restaurant_database",
+  "module": "app/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "bun run app/index.js",
+    "watch": "bun --watch run app/index.js"
+  },
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.1.1",
+    "qs": "^6.11.2"
+  }
+}
