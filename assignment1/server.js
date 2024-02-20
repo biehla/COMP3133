@@ -1,51 +1,25 @@
 const express = require('express')
-const { ApolloServer, gql } = require('apollo-server-express')
+const { ApolloServer } = require('apollo-server-express')
 const mongoose = require('mongoose')
+const { ApolloServerPluginInlineTrace } = require("apollo-server-core");
 
-const { MONGODB } = require('./config')
+const typeDefs = require('./typeDefs')
+const resolvers = require('./resolvers')
 
-const typeDefs = gql`
-  type Query {
-    hello: String,
-    user: User
-  }
-`;
+const Db = require('./config')
 
-const resolvers = {
-  Query: {
-    hello: () => 'Hello world!',
-    getAllEmployees: () => {
-      // get employees
-    },
-    login: () => {
-      // login and set jwt
-    },
-    getEmployeeById: () => {
-      // get employee by id
-    },
-    getEmployeeByName: () => {
-      // get employee by name
-    },
-  },
-
-  Mutation: {
-    signUp: () => {
-      // sign up
-    },
-    addEmployee: () => {
-      // add employee
-    },
-    updateEmployee: () => {
-      // update employee
-    },
-    deleteEmployee: () => {
-      // delete employee
-    },
-  },
-};
+const mongodb_atlas_url = `mongodb+srv://${Db.DB_USER}:${Db.DB_USER_PASSWORD}@${Db.DB_CLUSTER}/${Db.DB_NAME}?retryWrites=true&w=majority`;
 
 const main = async () => {
-  const server = new ApolloServer({ typeDefs, resolvers });
+  mongoose.connect(mongodb_atlas_url, {
+  }).then(() => {
+    console.log('Success Mongodb connection')
+  }).catch((err) => {
+    console.log(`Error Mongodb connection ${err}`)
+  })
+
+
+  const server = new ApolloServer({ typeDefs, resolvers, plugins: [ApolloServerPluginInlineTrace] });
 
   const app = express();
   await server.start();
