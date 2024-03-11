@@ -389,7 +389,7 @@ apollo-reporting-protobuf@^3.4.0:
   dependencies:
     "@apollo/protobufjs" "1.2.6"
 
-apollo-server-core@^3.13.0, apollo-server-core@^3.13.0:
+apollo-server-core@^3.13.0:
   version "3.13.0"
   resolved "https://registry.npmjs.org/apollo-server-core/-/apollo-server-core-3.13.0.tgz"
   integrity sha512-v/g6DR6KuHn9DYSdtQijz8dLOkP78I5JSVJzPkARhDbhpH74QNwrQ2PP2URAPPEDJ2EeZNQDX8PvbYkAKqg+kg==
